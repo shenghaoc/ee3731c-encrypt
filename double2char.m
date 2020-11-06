@@ -21,3 +21,6 @@ function char_array = double2char(double_array)
 % Output:
 %   char_array = 1 x N character array
 
+double_array = double_array + 'a' - 1;
+double_array(double_array == 'z' + 1) = ' ';
+char_array = char(double_array);
