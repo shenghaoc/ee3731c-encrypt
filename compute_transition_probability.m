@@ -27,4 +27,22 @@ function pr_trans = compute_transition_probability(input_txt)
 %
 %	Observe that sum(pr_trans(1, :)) is equal to 1
 
+pr_trans = zeros(27); % initialise zero matrix
+cnt = zeros(1,27); % #times i-th alphabet appears in input text except at the last position
+input_txt = char2double(input_txt); % convert text to numbers
 
+for i = 1:size(input_txt,2)-1
+    cnt(input_txt(i)) = cnt(input_txt(i)) + 1; % keep track of cnt
+    % Currently, pr_trans is #times j-th alphabet appears after i-th alphabet in input text
+    pr_trans(input_txt(i),input_txt(i+1)) = pr_trans(input_txt(i),input_txt(i+1)) + 1;
+end
+
+% Now we calculate the transition probability based on given formula
+% This step is O(1) and for large input the chances of a letter not
+% appearing is low anyway, so I'm just going to keep it simple and
+% calculate everything
+for i = 1:27
+    for j = 1:27
+        pr_trans(i,j) = (1 + pr_trans(i,j)) / (27 + cnt(i));
+    end
+end
