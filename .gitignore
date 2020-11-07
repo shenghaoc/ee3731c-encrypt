@@ -33,3 +33,4 @@ octave-workspace
 # EE3731C files
 *.mat
 mcmc_decrypt_text.m
+EE3731C_encrypt.pdf
