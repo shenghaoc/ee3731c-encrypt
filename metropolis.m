@@ -43,3 +43,23 @@ function [accept_new_key, prob_accept] = metropolis(current_key, new_key, pr_tra
 %		technically still be correct, but your code will behave different from 
 %		everyone else.
 
+% Common conversion to double of encrypted text
+encrypted_double = char2double(encrypted_txt);
+
+% Decryption using current key
+decrypted_double_curr = current_key(encrypted_double);
+decrypted_txt_curr = double2char(decrypted_double_curr);
+logn_pr_curr = logn_pr_txt(decrypted_txt_curr, pr_trans);
+
+% Decrpytion using new key
+decrypted_double_new = new_key(encrypted_double);
+decrypted_txt_new = double2char(decrypted_double_new);
+logn_pr_new = logn_pr_txt(decrypted_txt_new, pr_trans);
+
+if logn_pr_new >= logn_pr_curr
+    accept_new_key = 1;
+    prob_accept = 1;
+else
+    prob_accept = exp(logn_pr_new - logn_pr_curr);
+    accept_new_key = double(rand(1) < prob_accept);
+end
