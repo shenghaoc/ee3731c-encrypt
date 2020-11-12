@@ -31,7 +31,7 @@ pr_trans = zeros(27); % initialise zero matrix
 cnt = zeros(1,27); % #times i-th alphabet appears in input text except at the last position
 input_txt = char2double(input_txt); % convert text to numbers
 
-for i = 1:size(input_txt,2)-1
+for i = 1:numel(input_txt)-1
     cnt(input_txt(i)) = cnt(input_txt(i)) + 1; % keep track of cnt
     % Currently, pr_trans is #times j-th alphabet appears after i-th alphabet in input text
     pr_trans(input_txt(i),input_txt(i+1)) = pr_trans(input_txt(i),input_txt(i+1)) + 1;
