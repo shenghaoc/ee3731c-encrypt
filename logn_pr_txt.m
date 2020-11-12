@@ -27,7 +27,7 @@ function log_pr = logn_pr_txt(input_txt, pr_trans)
 input_txt = char2double(input_txt); % convert text to numbers
 log_pr = 0;
 
-for i = 1:size(input_txt,2)-1
+for i = 1:numel(input_txt)-1
     log_pr = log_pr + log(pr_trans(input_txt(i),input_txt(i+1)));
 end
 

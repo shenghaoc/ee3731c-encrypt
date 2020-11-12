@@ -24,4 +24,4 @@ function double_array = char2double(char_array)
 
 char_array = lower(char_array);
 char_array(~isletter(char_array)) = 'z' + 1;
-double_array = double(lower(char_array)) - 'a' + 1;
+double_array = double(char_array) - 'a' + 1;
